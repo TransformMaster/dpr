@@ -1,4 +1,4 @@
-from qanta_util.qbdata import QantaDatabase
+from qbdata import QantaDatabase
 from sentence_transformers import SentenceTransformer, util
 import pickle
 #import torch
@@ -30,5 +30,5 @@ for index in range(len(questions)):
 
 passage_embedding = passage_encoder.encode(passages)
 
-with open('passage_embedding_2.pickle', 'wb') as pkl:
+with open('DPR_passage_embedding_2.pickle', 'wb') as pkl:
     pickle.dump({'ids': ids, 'embeddings': passage_embedding}, pkl, protocol=pickle.HIGHEST_PROTOCOL)
