@@ -19,4 +19,7 @@ For the result files:
 
 The analyze.py file contains the function (check_cell) to compute how many correct answers are in different cells with FAISS search, and it also contains the function(check_rank) to check how many FAISS answers have lower rank than exact search.
 
+In order to run analyze.py file, you need to get dataset from:
+https://drive.google.com/file/d/1UryOwR7YyTKIDJGjU0QFSc1LuaSG7Teq/view?usp=sharing
+
   
