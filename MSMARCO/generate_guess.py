@@ -9,7 +9,7 @@ def train_faiss_ivf(embeddings, p_idx):
     quantizer = faiss.IndexFlatIP(embeddings
                                   .shape[1])
     index = faiss.IndexIVFFlat(quantizer, embeddings.shape[1], 1024, faiss.METRIC_INNER_PRODUCT)
-    faiss.normalize_L2(embeddings)
+    #faiss.normalize_L2(embeddings)
     index.train(embeddings)
     index.add_with_ids(embeddings, p_idx)
     faiss.write_index(index, "centroidpq1024")
