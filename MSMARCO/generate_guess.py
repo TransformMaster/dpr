@@ -6,17 +6,14 @@ import faiss
 import numpy as np
 
 def train_faiss_ivf(embeddings, p_idx):
-    #quantizer = faiss.IndexFlatIP(embeddings
-    #                              .shape[1])
-    #index = faiss.IndexIVFFlat(quantizer, embeddings.shape[1], 1024, faiss.METRIC_INNER_PRODUCT)
-    #faiss.normalize_L2(embeddings)
-    #print(1)
-    #index.train(embeddings)
-    #print(2)
-    #index.add_with_ids(embeddings, p_idx)
-    #print(3)
-    #faiss.write_index(index, "centroidpq1024")
-    index = faiss.read_index("centroidpq1024")
+    quantizer = faiss.IndexFlatIP(embeddings
+                                  .shape[1])
+    index = faiss.IndexIVFFlat(quantizer, embeddings.shape[1], 1024, faiss.METRIC_INNER_PRODUCT)
+    faiss.normalize_L2(embeddings)
+    index.train(embeddings)
+    index.add_with_ids(embeddings, p_idx)
+    faiss.write_index(index, "centroidpq1024")
+    #index = faiss.read_index("centroidpq1024")
     cell_index_list = []
     j = 0
     for (i,k) in zip(embeddings,p_idx):
@@ -32,13 +29,9 @@ def train_faiss_ivf(embeddings, p_idx):
 
 def train_faiss_exact(embeddings, p_idx):
     #faiss.normalize_L2(embeddings)
-    print(1)
     index = faiss.IndexFlatIP(embeddings.shape[1])
-    print(2)
     index = faiss.IndexIDMap(index)
-    print(3)
     index.add_with_ids(embeddings, p_idx)
-    print(4)
     faiss.write_index(index, "exact")
 
 
